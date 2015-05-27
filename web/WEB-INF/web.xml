@@ -12,4 +12,22 @@
         <servlet-name>RealCustomerRegistrarServlet</servlet-name>
         <url-pattern>/RealCustomerRegistrarServlet</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>LegalCustomerRegistrationServlet</servlet-name>
+        <servlet-class>presentation.LegalCustomerRegistrationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LegalCustomerRegistrationServlet</servlet-name>
+        <url-pattern>/LegalCustomerRegistrationServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>RealCustomerSearchServlet</servlet-name>
+        <servlet-class>presentation.RealCustomerSearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RealCustomerSearchServlet</servlet-name>
+        <url-pattern>/RealCustomerSearchServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

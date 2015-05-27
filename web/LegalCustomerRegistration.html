@@ -2,9 +2,57 @@
 <html lang="fa-IR">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>مدیریت اطلاعات مشتریان</title>
+    <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
-<body>
+<body dir="rtl">
+<div id="wrapper">
+    <div id="header-wrapper">
+        <div id="header" class="container" >
+            <div id="logo">
+                <h1><a href="#">سامانه مدیریت اطلاعات مشتریان</a></h1>
+            </div>
+            <div id="menu" dir="rtl">
+                <ul>
+                    <li><a href="index.html">خانه</a></li>
+                    <li><a href="RealCustomerRegistration.html">ثبت مشتری حقیقی</a></li>
+                    <li class="current_page_item"><a href="LegalCustomerRegistration.html">ثبت مشتری حقوقی</a></li>
+                    <li><a href="RealCustomerSearch.html">جستجوی مشتری حقیقی</a></li>
+                    <li><a href="LegalCustomerSearch.html">جستجوی مشتری حقوقی</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <div class="post">
 
+            <div class="entry">
+
+                <div class="sidebar">
+                    <h2>ثبت مشتری حقیقی</h2>
+                    <form method="get" action="http://localhost:8080/LegalCustomerRegistrationServlet">
+                        <div class="inputRow" >
+                            <div class="label" >نام شرکت:</div>
+                            <div class="input"><input class="input" type="text" name="CompanyName" size="20"></div>
+                        </div>
+                        <div class="inputRow" >
+                            <div class="label" >تاریخ ثبت:</div>
+                            <div class="input"><input class="input" type="text" name="RegisterDate" size="20"></div>
+                        </div>
+                        <div class="LastInputRow" >
+                            <div class="label">کد اقتصادی:</div>
+                            <div class="input"><input class="input" type="text" name="EconomicCode" size="20"></div>
+                        </div>
+                        <div>
+                            <div class="buttonDiv">
+                                <input class="button" type="submit" value="ثبت" >
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

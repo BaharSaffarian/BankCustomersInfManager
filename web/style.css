@@ -315,7 +315,7 @@ a:hover {
 
 .sidebar {
     position: relative;
-    width: 260px;
+    width: 300px;
     height: 400;
     margin: 40px auto;
     padding: 30px 40px 40px 40px;
@@ -352,15 +352,17 @@ a:hover {
 
 .label{
     margin-top: 15px;
-    width: 80px;
+    width: 100px;
     height: 25;
     float: right;
     font-weight: 400;
     color: #000000;
 }
+
 .buttonDiv{
     width: 88px; margin: 0 auto;
 }
+
 .button{
     margin: 20 auto;
     width: 88px;
@@ -370,6 +372,56 @@ a:hover {
     border-radius: 5px;
     color: #FFFFFF;
     text-align: center;
+}
+
+.table{
+    width: 1100px;
+    margin: 40px auto;
+    padding-bottom: 5px;
+    background: #f4f4f4;
+    border-radius: 7px;
+    text-align: center;
+}
+
+.tr{
+    margin:5px 5px 5px 5px ;
+    padding: 0;
+    width: 790px;
+    height: 50px;
+    background: #ebebeb;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.htr{
+    border-bottom: 2px solid #B50D0D;
+    margin:5px 5px 5px 5px;
+    padding: 0;
+    width: 790px;
+    height: 50px;
+    background: #ebebeb;
+}
+
+.idtd{
+    width: 30px;
+    margin-left: 5px;
+    float: right;
+    padding: 5px 5px 5px 5px;
+}
+
+.td{
+    width: 90px;
+    margin-left: 5px;
+    float: right;
+    padding: 5px 5px 5px 5px;
+}
+
+.htd{
+    width: 90px;
+    margin-left: 5px;
+    color: #B50D0D;;
+    float: right;
+    padding: 5px 5px 5px 5px;
 }
 
 .sidebar h2 {
@@ -587,20 +639,7 @@ ul.style1 .first {
     width: 300px;
 }
 
-.button a {
-    display: block;
-    float: left;
-    width: 88px;
-    padding: 5px 5px;
-    margin-right: 10px;
-    background: #B50D0D;
-    border-radius: 5px;
-    color: #FFFFFF;
-    text-align: center;
-    text-decoration: none;
-}
 
 .textCenter{
     text-align: center;
-    margin: 0 auto;
 }

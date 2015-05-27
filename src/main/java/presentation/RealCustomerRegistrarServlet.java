@@ -1,6 +1,7 @@
 package presentation;
 
-import logic.LogicHandler;
+import logic.RealCustomerLogic;
+import model.RealCustomer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
 
 
 public class RealCustomerRegistrarServlet extends HttpServlet {
@@ -19,9 +19,6 @@ public class RealCustomerRegistrarServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=utf-8");
         PrintWriter out = response.getWriter();
-        Connection dbConnection=null;
-        String insertQuery;
-        int result=-1;
         out.println("<!DOCTYPE html >\n" +
                 "<html lang=\"fa-IR\">\n" +
                 "<head>\n" +
@@ -52,10 +49,44 @@ public class RealCustomerRegistrarServlet extends HttpServlet {
                 "\n" +
                 "            <div class=\"entry\">\n"+
                 "<div class=\"sidebar\">");
-        int customerId=LogicHandler.registerCustomer(request);
+        RealCustomer realCustomer=new RealCustomer(request.getParameter("FirstName"),request.getParameter("LastName"),
+                request.getParameter("FatherName"),request.getParameter("DateOfBirth"),
+                request.getParameter("NationalCode"));
+        int customerId= RealCustomerLogic.registerCustomer(realCustomer);
         if(customerId!=-1){
             out.println("<p class=\"textCenter\">مشتری با موفقیت ثبت شد</p>");
             out.println("<p class=\"textCenter\">شماره مشتری:"+customerId+"</p>");
+        }else{
+            out.println("<p class=\"textCenter\">کد ملی تکراری است</p>");
+            out.println("<p class=\"textCenter\">لطفا مجددا تلاش کنید</p>");
+            out.println("<h2>ثبت مشتری حقیقی</h2>\n" +
+                    "                    <form method=\"get\" action=\"http://localhost:8080/RealCustomerRegistrarServlet\">\n" +
+                    "                    <div class=\"inputRow\" >\n" +
+                    "                        <div class=\"label\" >نام:</div>\n" +
+                    "                        <div class=\"input\"><input class=\"input\" type=\"text\" name=\"FirstName\" size=\"20\"></div>\n" +
+                    "                    </div>\n" +
+                    "                    <div class=\"inputRow\" >\n" +
+                    "                        <div class=\"label\" >نام خانوادگی:</div>\n" +
+                    "                        <div class=\"input\"><input class=\"input\" type=\"text\" name=\"LastName\" size=\"20\"></div>\n" +
+                    "                    </div>\n" +
+                    "                    <div class=\"inputRow\" >\n" +
+                    "                        <div class=\"label\">نام پدر:</div>\n" +
+                    "                        <div class=\"input\"><input class=\"input\" type=\"text\" name=\"FatherName\" size=\"20\"></div>\n" +
+                    "                    </div>\n" +
+                    "                    <div class=\"inputRow\" >\n" +
+                    "                        <div class=\"label\">تاریخ تولد:</div>\n" +
+                    "                        <div class=\"input\"><input class=\"input\" type=\"text\" name=\"DateOfBirth\" size=\"20\"></div>\n" +
+                    "                    </div>\n" +
+                    "                    <div class=\"LastInputRow\" >\n" +
+                    "                        <div class=\"label\">کد ملی:</div>\n" +
+                    "                        <div class=\"input\"><input class=\"input\" type=\"text\" name=\"NationalCode\" size=\"20\"></div>\n" +
+                    "                    </div>\n" +
+                    "                    <div>\n" +
+                    "                        <div class=\"buttonDiv\">\n" +
+                    "                            <input class=\"button\" type=\"submit\" value=\"ثبت\" >\n" +
+                    "                        </div>\n" +
+                    "                    </div>\n" +
+                    "                    </form>");
         }
 
         out.println("</div>\n" +
