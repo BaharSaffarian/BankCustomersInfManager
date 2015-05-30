@@ -30,4 +30,49 @@
         <servlet-name>RealCustomerSearchServlet</servlet-name>
         <url-pattern>/RealCustomerSearchServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RealCustomerUpdateServlet</servlet-name>
+        <servlet-class>presentation.RealCustomerUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RealCustomerUpdateServlet</servlet-name>
+        <url-pattern>/RealCustomerUpdateServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>RealCustomerDeleteServlet</servlet-name>
+        <servlet-class>presentation.RealCustomerDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RealCustomerDeleteServlet</servlet-name>
+        <url-pattern>/RealCustomerDeleteServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LegalCustomerSearchServlet</servlet-name>
+        <servlet-class>presentation.LegalCustomerSearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LegalCustomerSearchServlet</servlet-name>
+        <url-pattern>/LegalCustomerSearchServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LegalCustomerUpdateServlet</servlet-name>
+        <servlet-class>presentation.LegalCustomerUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LegalCustomerUpdateServlet</servlet-name>
+        <url-pattern>/LegalCustomerUpdateServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>LegalCustomerDeleteServlet</servlet-name>
+        <servlet-class>presentation.LegalCustomerDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LegalCustomerDeleteServlet</servlet-name>
+        <url-pattern>/LegalCustomerDeleteServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -11,6 +11,7 @@ public class LegalCustomerLogic {
         return -1;
     }
 
+
     /*public static LegalCustomer searchCustomer(LegalCustomer legalCustomer){
 
     }*/

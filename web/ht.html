@@ -38,19 +38,66 @@
                         <div class="htd"><p>کد ملی</p></div>
                         <div class="htd"></div>
                     </div>
+                    <script>
+                        function visible(x){
+                            document.getElementById("id").style.display="inline";
+                            document.getElementById("firstName"+x).style.display="inline";
+                            document.getElementById("lastName"+x).style.display="inline";
+                            document.getElementById("fatherName"+x).style.display="inline";
+                            document.getElementById("birthDate"+x).style.display="inline";
+                            document.getElementById("nationalCode"+x).style.display="inline";
+                            document.getElementById("send").style.display="inline";
+
+                            document.getElementById("idLabel").style.display="none";
+                            document.getElementById("firstNameLabel").style.display="none";
+                            document.getElementById("lastNameLabel").style.display="none";
+                            document.getElementById("fatherNameLabel").style.display="none";
+                            document.getElementById("birthDateLabel").style.display="none";
+                            document.getElementById("nationalCodeLabel").style.display="none";
+                            document.getElementById("choose").style.display="none";
+
+                        }
+
+                        function doPreview()
+                        {
+                            form=document.getElementById('myform');
+                            form.target='_blank';
+                            form.action='index.html';
+                            form.submit();
+                            form.target='';
+                        }
+                    </script>
+                    <form method="get" id="myform" >
                     <div class="tr" >
                         <div class="idtd"></div>
-                        <div class="td"><input type="text" name="FirstName" size="8" value=""></div>
-                        <div class="td"><input type="text" name="FirstName" size="8" value=""></div>
-                        <div class="td"><input type="text" name="FirstName" size="8" value=""></div>
-                        <div class="td"><input type="text" name="FirstName" size="8" value=""></div>
-                        <div class="td"><input type="text" name="FirstName" size="8" value=""></div>
-                        <div class="td"><input type="text" name="FirstName" size="8" value=""></div>
-                        <div class="td" >
-                            <a><img src="images/user_male_edit.png" style="margin-left: 5px"></a>
-                            <a><img src="images/user_male_delete.png"></a>
+                        <div class="td">
+                            <p id="idLabel" style="width: 20px; height: 30px">wwwww</p>
+                            <input class="notDisplay" type="text" id="id"  size="8" value="wwww"  disabled >
                         </div>
+                        <div class="td">
+                            <p>baba</p>
+                            <input id="firstName1" type="text" name="FirstName" size="8" value="" class="notDisplay">
+                        </div>
+                        <div class="td">
+                            <p></p>
+                            <input id="lastName1" type="text" name="FirstName" size="8" value="" class="notDisplay"></div>background: #B50D0D;
+    border-radius: 5px;
+                        <div class="td">
+                            <p></p>
+                            <input id="fatherName1" type="text" name="FirstName" size="8" value="" class="notDisplay"></div>
+                        <div class="td">
+                            <p></p>
+                            <input id="birthDate1" type="text" name="FirstName" size="8" value="" class="notDisplay"></div>
+                        <div class="td">
+                            <p></p>
+                            <input id="nationalCode1" type="text" name="FirstName" size="8" value="" class="notDisplay"></div>
+                        <div class="td" id="choose">
+                            <a href="#" onclick="visible(1)"><img src="images/user_male_edit.png" style="margin-left: 5px"></a>
+                            <a href="/RealCustomerDeleteServlet"><img src="images/user_male_delete.png"></a>
+                        </div>
+                        <div class="notDisplay" id="send"><input type="submit" value="xxx" onclick="doPreview()"> </div>
                     </div>
+                    </form>
                     <div class="tr"></div>
                 </div>
             </div>

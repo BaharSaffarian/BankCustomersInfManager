@@ -373,6 +373,15 @@ a:hover {
     color: #FFFFFF;
     text-align: center;
 }
+.tinButton{
+    margin: 0 auto;
+    width: 50px;
+    height:25px;
+    background: #B50D0D;
+    border-radius: 5px;
+    color: #FFFFFF;
+    text-align: center;
+}
 
 .table{
     width: 1100px;
@@ -447,6 +456,10 @@ a:hover {
 
 .sidebar a:hover {
     text-decoration: underline;
+}
+
+.notDisplay{
+    display: none;
 }
 
 

@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 
 public class RealCustomerSearchServlet extends HttpServlet {
@@ -65,7 +64,7 @@ public class RealCustomerSearchServlet extends HttpServlet {
         else{
             out.println("<div class=\"table\">\n" +
                     "                    <div class=\"htr\">\n" +
-                    "                        <div class=\"idtd\"></div>\n" +
+                    "                        <div class=\"idtd\">ردیف</div>\n" +
                     "\n" +
                     "                        <div class=\"htd\"><p>شناسه</p></div>\n" +
                     "                        <div class=\"htd\"><p>نام</p></div>\n" +
@@ -75,8 +74,82 @@ public class RealCustomerSearchServlet extends HttpServlet {
                     "                        <div class=\"htd\"><p>کد ملی</p></div>\n" +
                     "                        <div class=\"htd\"></div>\n" +
                     "                    </div>");
-            Iterator<RealCustomer> it=realCustomers.iterator();
-            //while ()
+            int counter = 0;
+            out.println("<script>\n" +
+                    "                        function visible(count){\n" +
+                    "                            document.getElementById(\"firstName\"+ count).style.display=\"inline\";\n" +
+                    "                            document.getElementById(\"lastName\"+ count).style.display=\"inline\";\n" +
+                    "                            document.getElementById(\"fatherName\"+ count).style.display=\"inline\";\n" +
+                    "                            document.getElementById(\"birthDate\"+ count).style.display=\"inline\";\n" +
+                    "                            document.getElementById(\"nationalCode\"+ count).style.display=\"inline\";\n" +
+                    "                            document.getElementById(\"send\"+ count).style.display=\"inline\";\n" +
+                    "\n" +
+                    "                            document.getElementById(\"firstNameLabel\"+count).style.display=\"none\";\n" +
+                    "                            document.getElementById(\"lastNameLabel\"+count).style.display=\"none\";\n" +
+                    "                            document.getElementById(\"fatherNameLabel\"+ count).style.display=\"none\";\n" +
+                    "                            document.getElementById(\"birthDateLabel\"+ count).style.display=\"none\";\n" +
+                    "                            document.getElementById(\"nationalCodeLabel\"+ count).style.display=\"none\";\n" +
+                    "                            document.getElementById(\"choose\"+count).style.display=\"none\";\n" +
+                    "                        }\n" +
+                    "                         function doUpdate()\n" +
+                    "                        {\n" +
+                    "                            form=document.getElementById('myform');\n" +
+                    "                            form.target='_blank';\n" +
+                    "                            form.action='RealCustomerUpdateServlet';\n" +
+                    "                            form.submit();\n" +
+                    "                            form.target='';\n" +
+                    "                        }"+
+                    "                         function doDelete()\n" +
+                    "                        {\n" +
+                    "                            form=document.getElementById('myform');\n" +
+                    "                            form.target='_blank';\n" +
+                    "                            form.action='RealCustomerDeleteServlet';\n" +
+                    "                            form.submit();\n" +
+                    "                            form.target='';\n" +
+                    "                        }"+
+                    "</script>");
+            for (RealCustomer realCustomer1 : realCustomers) {
+                counter++;
+                realCustomer = realCustomer1;
+                out.println("<div class=\"tr\" >\n" +
+                        "<form method=\"get\" id=\"myform\">" +
+                        "                        <div class=\"idtd\">" + counter + "</div>\n" +
+                        "                        <div class=\"td\">" +
+                        "                        <p id=\"idLabel"+counter+"\">"+realCustomer.getId()+"</p>"+
+                        "                        <input style=\"display:none\" type=\"text\" id=\"id"+counter+"\" name=\"id\" size=\"8\" value=\"" + realCustomer.getId() + "\">" +
+                        "                        </div>\n" +
+                        "                        <div class=\"td\">" +
+                        "                        <p id=\"firstNameLabel"+counter+"\">"+realCustomer.getFirstName()+"</p>"+
+                        "                        <input style=\"display:none\" type=\"text\" id=\"firstName"+counter+"\" name=\"firstName\" size=\"8\" value=\"" + realCustomer.getFirstName() + "\">" +
+                        "                        </div>\n" +
+                        "                        <div class=\"td\">" +
+                        "                        <p id=\"lastNameLabel"+counter+"\">"+realCustomer.getLastName()+"</p>"+
+                        "                        <input style=\"display:none\" type=\"text\" id=\"lastName"+counter+"\" name=\"lastName\" size=\"8\" value=\"" + realCustomer.getLastName() + "\">" +
+                        "                        </div>\n" +
+                        "                        <div class=\"td\">" +
+                        "                        <p id=\"fatherNameLabel"+counter+"\">"+realCustomer.getFatherName()+"</p>"+
+                        "                        <input style=\"display:none\" type=\"text\" id=\"fatherName"+counter+"\" name=\"fatherName\" size=\"8\" value=\"" + realCustomer.getFatherName() + "\">" +
+                        "                        </div>\n" +
+                        "                        <div class=\"td\">" +
+                        "                        <p id=\"birthDateLabel"+counter+"\">"+realCustomer.getDateOfBirth().substring(0,10)+"</p>"+
+                        "                        <input style=\"display:none\" type=\"text\" id=\"birthDate"+counter+"\" name=\"birthDate\" size=\"8\" value=\"" + realCustomer.getDateOfBirth().substring(0,10) + "\">" +
+                        "                        </div>\n" +
+                        "                        <div class=\"td\">" +
+                        "                        <p id=\"nationalCodeLabel"+counter+"\">"+realCustomer.getNationalCode()+"</p>"+
+                        "                        <input style=\"display:none\" type=\"text\" id=\"nationalCode"+counter+"\" name=\"nationalCode\" size=\"8\" value=\"" + realCustomer.getNationalCode() + "\">" +
+                        "                        </div>\n" +
+                        "                        <div class=\"td\" id=\"choose"+counter+"\">\n" +
+                        "                            <a href=\"#\" onclick=\"visible("+counter+")\"><img src=\"images/user_male_edit.png\" style=\"margin-left: 5px\"></a>\n" +
+                        "                            <a  onclick=\"doDelete()\"><img src=\"images/user_male_delete.png\"></a>\n" +
+                        "                        </div>\n" +
+                        "                        <div class=\"td\" style=\"display:none\" id=\"send"+counter+"\">" +
+                        "                           <div class=\"buttonDiv\">\n" +
+                                "                        <input class=\"tinButton\" type=\"submit\" value=\"ثبت\" onclick=\"doUpdate()\">\n" +
+                                "                   </div>"+
+                        "                        </div>"+
+                        "</form>" +
+                        "                    </div>");
+            }
             out.println("</div>");
         }
         out.println("</div>\n" +
