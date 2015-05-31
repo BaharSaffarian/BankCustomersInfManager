@@ -46,22 +46,21 @@ public class RealCustomerSearchServlet extends HttpServlet {
                 "    <div id=\"content\">\n" +
                 "        <div class=\"post\">\n" +
                 "            <div class=\"entry\">");
-        RealCustomer realCustomer=new RealCustomer();
-        if(request.getParameter("CustomerId").length()!=0)
+        RealCustomer realCustomer = new RealCustomer();
+        if (request.getParameter("CustomerId").length() != 0)
             realCustomer.setId(request.getParameter("CustomerId"));
-        if(request.getParameter("FirstName").length()!=0)
+        if (request.getParameter("FirstName").length() != 0)
             realCustomer.setFirstName(request.getParameter("FirstName"));
-        if(request.getParameter("LastName").length()!=0)
+        if (request.getParameter("LastName").length() != 0)
             realCustomer.setLastName(request.getParameter("LastName"));
-        if(request.getParameter("NationalCode").length()!=0)
+        if (request.getParameter("NationalCode").length() != 0)
             realCustomer.setNationalCode(request.getParameter("NationalCode"));
-        ArrayList<RealCustomer> realCustomers=RealCustomerCRUD.selectRealCustomer(realCustomer);
-        if(realCustomers.isEmpty()){
+        ArrayList<RealCustomer> realCustomers = RealCustomerCRUD.selectRealCustomer(realCustomer);
+        if (realCustomers.isEmpty()) {
             out.println("<div class=\"sidebar\">");
             out.println("<p class=\"textCenter\">موردی یافت نشد</p>");
             out.println("</div>");
-        }
-        else{
+        } else {
             out.println("<div class=\"table\">\n" +
                     "                    <div class=\"htr\">\n" +
                     "                        <div class=\"idtd\">ردیف</div>\n" +
@@ -91,62 +90,62 @@ public class RealCustomerSearchServlet extends HttpServlet {
                     "                            document.getElementById(\"nationalCodeLabel\"+ count).style.display=\"none\";\n" +
                     "                            document.getElementById(\"choose\"+count).style.display=\"none\";\n" +
                     "                        }\n" +
-                    "                         function doUpdate()\n" +
+                    "                         function doUpdate(count)\n" +
                     "                        {\n" +
-                    "                            form=document.getElementById('myform');\n" +
+                    "                            form=document.getElementById(\"myform\"+count);\n" +
                     "                            form.target='_blank';\n" +
                     "                            form.action='RealCustomerUpdateServlet';\n" +
                     "                            form.submit();\n" +
                     "                            form.target='';\n" +
-                    "                        }"+
-                    "                         function doDelete()\n" +
+                    "                        }" +
+                    "                         function doDelete(count)\n" +
                     "                        {\n" +
-                    "                            form=document.getElementById('myform');\n" +
-                    "                            form.target='_blank';\n" +
+                    "                            form=document.getElementById(\"myform\"+count);\n" +
                     "                            form.action='RealCustomerDeleteServlet';\n" +
                     "                            form.submit();\n" +
                     "                            form.target='';\n" +
-                    "                        }"+
+                    "                        }" +
                     "</script>");
             for (RealCustomer realCustomer1 : realCustomers) {
                 counter++;
                 realCustomer = realCustomer1;
                 out.println("<div class=\"tr\" >\n" +
-                        "<form method=\"get\" id=\"myform\">" +
+                        "<form method=\"get\" id=\"myform"+counter+"\">" +
+                        "                <input style=\"display:none\" type=\"text\" \" name=\"oldNationalCode\" size=\"8\" value=\"" + realCustomer.getNationalCode() + "\">" +
                         "                        <div class=\"idtd\">" + counter + "</div>\n" +
                         "                        <div class=\"td\">" +
-                        "                        <p id=\"idLabel"+counter+"\">"+realCustomer.getId()+"</p>"+
-                        "                        <input style=\"display:none\" type=\"text\" id=\"id"+counter+"\" name=\"id\" size=\"8\" value=\"" + realCustomer.getId() + "\">" +
+                        "                        <p id=\"idLabel" + counter + "\">" + realCustomer.getId() + "</p>" +
+                        "                        <input style=\"display:none\" type=\"text\" id=\"id" + counter + "\" name=\"id\" size=\"8\" value=\"" + realCustomer.getId() + "\">" +
                         "                        </div>\n" +
                         "                        <div class=\"td\">" +
-                        "                        <p id=\"firstNameLabel"+counter+"\">"+realCustomer.getFirstName()+"</p>"+
-                        "                        <input style=\"display:none\" type=\"text\" id=\"firstName"+counter+"\" name=\"firstName\" size=\"8\" value=\"" + realCustomer.getFirstName() + "\">" +
+                        "                        <p id=\"firstNameLabel" + counter + "\">" + realCustomer.getFirstName() + "</p>" +
+                        "                        <input style=\"display:none\" type=\"text\" id=\"firstName" + counter + "\" name=\"firstName\" size=\"8\" value=\"" + realCustomer.getFirstName() + "\">" +
                         "                        </div>\n" +
                         "                        <div class=\"td\">" +
-                        "                        <p id=\"lastNameLabel"+counter+"\">"+realCustomer.getLastName()+"</p>"+
-                        "                        <input style=\"display:none\" type=\"text\" id=\"lastName"+counter+"\" name=\"lastName\" size=\"8\" value=\"" + realCustomer.getLastName() + "\">" +
+                        "                        <p id=\"lastNameLabel" + counter + "\">" + realCustomer.getLastName() + "</p>" +
+                        "                        <input style=\"display:none\" type=\"text\" id=\"lastName" + counter + "\" name=\"lastName\" size=\"8\" value=\"" + realCustomer.getLastName() + "\">" +
                         "                        </div>\n" +
                         "                        <div class=\"td\">" +
-                        "                        <p id=\"fatherNameLabel"+counter+"\">"+realCustomer.getFatherName()+"</p>"+
-                        "                        <input style=\"display:none\" type=\"text\" id=\"fatherName"+counter+"\" name=\"fatherName\" size=\"8\" value=\"" + realCustomer.getFatherName() + "\">" +
+                        "                        <p id=\"fatherNameLabel" + counter + "\">" + realCustomer.getFatherName() + "</p>" +
+                        "                        <input style=\"display:none\" type=\"text\" id=\"fatherName" + counter + "\" name=\"fatherName\" size=\"8\" value=\"" + realCustomer.getFatherName() + "\">" +
                         "                        </div>\n" +
                         "                        <div class=\"td\">" +
-                        "                        <p id=\"birthDateLabel"+counter+"\">"+realCustomer.getDateOfBirth().substring(0,10)+"</p>"+
-                        "                        <input style=\"display:none\" type=\"text\" id=\"birthDate"+counter+"\" name=\"birthDate\" size=\"8\" value=\"" + realCustomer.getDateOfBirth().substring(0,10) + "\">" +
+                        "                        <p id=\"birthDateLabel" + counter + "\">" + realCustomer.getDateOfBirth().substring(0, 10) + "</p>" +
+                        "                        <input style=\"display:none\" type=\"text\" id=\"birthDate" + counter + "\" name=\"birthDate\" size=\"8\" value=\"" + realCustomer.getDateOfBirth().substring(0, 10) + "\">" +
                         "                        </div>\n" +
                         "                        <div class=\"td\">" +
-                        "                        <p id=\"nationalCodeLabel"+counter+"\">"+realCustomer.getNationalCode()+"</p>"+
-                        "                        <input style=\"display:none\" type=\"text\" id=\"nationalCode"+counter+"\" name=\"nationalCode\" size=\"8\" value=\"" + realCustomer.getNationalCode() + "\">" +
+                        "                        <p id=\"nationalCodeLabel" + counter + "\">" + realCustomer.getNationalCode() + "</p>" +
+                        "                        <input style=\"display:none\" type=\"text\" id=\"nationalCode" + counter + "\" name=\"nationalCode\" size=\"8\" value=\"" + realCustomer.getNationalCode() + "\">" +
                         "                        </div>\n" +
-                        "                        <div class=\"td\" id=\"choose"+counter+"\">\n" +
-                        "                            <a href=\"#\" onclick=\"visible("+counter+")\"><img src=\"images/user_male_edit.png\" style=\"margin-left: 5px\"></a>\n" +
-                        "                            <a  onclick=\"doDelete()\"><img src=\"images/user_male_delete.png\"></a>\n" +
+                        "                        <div class=\"td\" id=\"choose" + counter + "\">\n" +
+                        "                            <a href=\"#\" onclick=\"visible(" + counter + ")\"><img src=\"images/user_male_edit.png\" style=\"margin-left: 5px\"></a>\n" +
+                        "                            <a  onclick=\"doDelete("+counter+")\"><img src=\"images/user_male_delete.png\"></a>\n" +
                         "                        </div>\n" +
-                        "                        <div class=\"td\" style=\"display:none\" id=\"send"+counter+"\">" +
+                        "                        <div class=\"td\" style=\"display:none\" id=\"send" + counter + "\">" +
                         "                           <div class=\"buttonDiv\">\n" +
-                                "                        <input class=\"tinButton\" type=\"submit\" value=\"ثبت\" onclick=\"doUpdate()\">\n" +
-                                "                   </div>"+
-                        "                        </div>"+
+                        "                        <input class=\"tinButton\" type=\"submit\" value=\"ثبت\" onclick=\"doUpdate("+counter+")\">\n" +
+                        "                   </div>" +
+                        "                        </div>" +
                         "</form>" +
                         "                    </div>");
             }

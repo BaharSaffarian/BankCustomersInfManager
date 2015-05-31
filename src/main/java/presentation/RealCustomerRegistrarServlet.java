@@ -47,16 +47,16 @@ public class RealCustomerRegistrarServlet extends HttpServlet {
                 "    <div id=\"content\">\n" +
                 "        <div class=\"post\">\n" +
                 "\n" +
-                "            <div class=\"entry\">\n"+
+                "            <div class=\"entry\">\n" +
                 "<div class=\"sidebar\">");
-        RealCustomer realCustomer=new RealCustomer(request.getParameter("FirstName"),request.getParameter("LastName"),
-                request.getParameter("FatherName"),request.getParameter("DateOfBirth"),
+        RealCustomer realCustomer = new RealCustomer(request.getParameter("FirstName"), request.getParameter("LastName"),
+                request.getParameter("FatherName"), request.getParameter("DateOfBirth"),
                 request.getParameter("NationalCode"));
-        int customerId= RealCustomerLogic.registerCustomer(realCustomer);
-        if(customerId!=-1){
+        int customerId = RealCustomerLogic.registerCustomer(realCustomer);
+        if (customerId != -1) {
             out.println("<p class=\"textCenter\">مشتری با موفقیت ثبت شد</p>");
-            out.println("<p class=\"textCenter\">شماره مشتری:"+customerId+"</p>");
-        }else{
+            out.println("<p class=\"textCenter\">شماره مشتری:" + customerId + "</p>");
+        } else {
             out.println("<p class=\"textCenter\">کد ملی تکراری است</p>");
             out.println("<p class=\"textCenter\">لطفا مجددا تلاش کنید</p>");
             out.println("<h2>ثبت مشتری حقیقی</h2>\n" +

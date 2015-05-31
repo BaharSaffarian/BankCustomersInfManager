@@ -1,7 +1,7 @@
 package presentation;
 
+import logic.LegalCustomerLogic;
 import model.LegalCustomer;
-import model.LegalCustomerCRUD;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -48,11 +48,14 @@ public class LegalCustomerUpdateServlet extends HttpServlet {
                 "\n" +
                 "            <div class=\"entry\">\n" +
                 "<div class=\"sidebar\">");
-        LegalCustomer legalCustomer=new LegalCustomer(request.getParameter("id"), request.getParameter("companyName"), request.getParameter("registerDate"),
+        LegalCustomer legalCustomer = new LegalCustomer(request.getParameter("id"), request.getParameter("companyName"), request.getParameter("registerDate"),
                 request.getParameter("economicCode"));
 
-        if(LegalCustomerCRUD.UpdateLegalCustomer(legalCustomer)) {
+        if (LegalCustomerLogic.updateCustomer(legalCustomer,request.getParameter("oldEconomicCode"))!=-1) {
             out.println("اطلاعات مشتری با موفقیت تغییر یافت");
+        }else{
+            out.println("<p class=\"textCenter\">کد اقتصادی تکراری است</p>");
+            out.println("<p class=\"textCenter\">لطفا مجددا تلاش کنید</p>");
         }
         out.println("</div>\n" +
                 "            </div>\n" +

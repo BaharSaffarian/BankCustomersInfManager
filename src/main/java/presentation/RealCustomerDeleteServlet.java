@@ -1,6 +1,6 @@
 package presentation;
 
-import model.RealCustomerCRUD;
+import logic.RealCustomerLogic;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -49,7 +49,7 @@ public class RealCustomerDeleteServlet extends HttpServlet {
                 "\n" +
                 "            <div class=\"entry\">\n" +
                 "<div class=\"sidebar\">");
-        if(RealCustomerCRUD.DeleteRealCustomer(request.getParameter("id"))) {
+        if (RealCustomerLogic.deleteRealCustomerById(request.getParameter("id"))) {
             out.println("مشتری مورد نظر ار سیستم حذف شد");
         }
         out.println("</div>\n" +

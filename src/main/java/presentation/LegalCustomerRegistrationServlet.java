@@ -47,13 +47,13 @@ public class LegalCustomerRegistrationServlet extends HttpServlet {
                 "            <div class=\"entry\">\n" +
                 "\n" +
                 "                <div class=\"sidebar\">\n");
-        LegalCustomer legalCustomer=new LegalCustomer(request.getParameter("CompanyName"),request.getParameter("RegisterDate"),
-                                                        request.getParameter("EconomicCode"));
-        int customerId= LegalCustomerLogic.registerCustomer(legalCustomer);
-        if(customerId!=-1){
+        LegalCustomer legalCustomer = new LegalCustomer(request.getParameter("CompanyName"), request.getParameter("RegisterDate"),
+                request.getParameter("EconomicCode"));
+        int customerId = LegalCustomerLogic.registerCustomer(legalCustomer);
+        if (customerId != -1) {
             out.println("<p class=\"textCenter\">مشتری با موفقیت ثبت شد</p>");
-            out.println("<p class=\"textCenter\">شماره مشتری:"+customerId+"</p>");
-        }else{
+            out.println("<p class=\"textCenter\">شماره مشتری:" + customerId + "</p>");
+        } else {
             out.println("<p class=\"textCenter\">کد اقتصادی تکراری است</p>");
             out.println("<p class=\"textCenter\">لطفا مجددا تلاش کنید</p>");
             out.println("                    <h2>ثبت مشتری حقیقی</h2>\n" +

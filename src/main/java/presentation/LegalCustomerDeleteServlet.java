@@ -1,5 +1,6 @@
 package presentation;
 
+import logic.LegalCustomerLogic;
 import model.LegalCustomerCRUD;
 
 import javax.servlet.ServletException;
@@ -9,9 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/**
- * Created by DOTIN SCHOOL 3 on 5/30/2015.
- */
 public class LegalCustomerDeleteServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -49,7 +47,7 @@ public class LegalCustomerDeleteServlet extends HttpServlet {
                 "\n" +
                 "            <div class=\"entry\">\n" +
                 "<div class=\"sidebar\">");
-        if(LegalCustomerCRUD.DeleteLegalCustomer(request.getParameter("id"))) {
+        if (LegalCustomerLogic.deleteLegalCustomerById(request.getParameter("id"))) {
             out.println("مشتری مورد نظر ار سیستم حذف شد");
         }
         out.println("</div>\n" +

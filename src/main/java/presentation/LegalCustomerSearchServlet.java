@@ -46,20 +46,19 @@ public class LegalCustomerSearchServlet extends HttpServlet {
                 "    <div id=\"content\">\n" +
                 "        <div class=\"post\">\n" +
                 "            <div class=\"entry\">");
-        LegalCustomer legalCustomer=new LegalCustomer();
-        if(request.getParameter("CustomerId").length()!=0)
+        LegalCustomer legalCustomer = new LegalCustomer();
+        if (request.getParameter("CustomerId").length() != 0)
             legalCustomer.setId(request.getParameter("CustomerId"));
-        if(request.getParameter("CompanyName").length()!=0)
+        if (request.getParameter("CompanyName").length() != 0)
             legalCustomer.setCompanyName(request.getParameter("CompanyName"));
-        if(request.getParameter("EconomicCode").length()!=0)
+        if (request.getParameter("EconomicCode").length() != 0)
             legalCustomer.setEconomicCode(request.getParameter("EconomicCode"));
-        ArrayList<LegalCustomer> legalCustomers= LegalCustomerCRUD.selectLegalCustomer(legalCustomer);
-        if(legalCustomers.isEmpty()){
+        ArrayList<LegalCustomer> legalCustomers = LegalCustomerCRUD.selectLegalCustomer(legalCustomer);
+        if (legalCustomers.isEmpty()) {
             out.println("<div class=\"sidebar\">");
             out.println("<p class=\"textCenter\">موردی یافت نشد</p>");
             out.println("</div>");
-        }
-        else{
+        } else {
             out.println("<div class=\"table\">\n" +
                     "                    <div class=\"htr\">\n" +
                     "                        <div class=\"idtd\">ردیف</div>\n" +
@@ -83,57 +82,57 @@ public class LegalCustomerSearchServlet extends HttpServlet {
                     "                            document.getElementById(\"economicCodeLabel\"+ count).style.display=\"none\";\n" +
                     "                            document.getElementById(\"choose\"+count).style.display=\"none\";\n" +
                     "                        }\n" +
-                    "                         function doUpdate()\n" +
+                    "                         function doUpdate(count)\n" +
                     "                        {\n" +
-                    "                            form=document.getElementById('myform');\n" +
+                    "                            form=document.getElementById(\"myform\"+count);\n" +
                     "                            form.target='_blank';\n" +
                     "                            form.action='LegalCustomerUpdateServlet';\n" +
                     "                            form.submit();\n" +
                     "                            form.target='';\n" +
-                    "                        }"+
-                    "                         function doDelete()\n" +
+                    "                        }" +
+                    "                         function doDelete(count)\n" +
                     "                        {\n" +
-                    "                            form=document.getElementById('myform');\n" +
-                    "                            form.target='_blank';\n" +
+                    "                            form=document.getElementById(\"myform\"+count);\n" +
                     "                            form.action='LegalCustomerDeleteServlet';\n" +
                     "                            form.submit();\n" +
                     "                            form.target='';\n" +
-                    "                        }"+
+                    "                        }" +
                     "</script>");
             for (LegalCustomer legalCustomer1 : legalCustomers) {
                 counter++;
                 legalCustomer = legalCustomer1;
-                out.println("<div class=\"tr\" >\n"+
-                        "<form method=\"get\" id=\"myform\">" +
-                                "                        <div class=\"idtd\">" + counter + "</div>\n" +
-                                "                        <div class=\"td\">" +
-                                "                        <p id=\"idLabel"+counter+"\">"+legalCustomer.getId()+"</p>"+
-                                "                        <input style=\"display:none\" type=\"text\" id=\"id"+counter+"\" name=\"id\" size=\"8\" value=\"" + legalCustomer.getId() + "\">" +
-                                "                        </div>\n" +
-                                "                        <div class=\"td\">" +
-                                "                        <p id=\"companyNameLabel"+counter+"\">"+legalCustomer.getCompanyName()+"</p>"+
-                                "                        <input style=\"display:none\" type=\"text\" id=\"companyName"+counter+"\" name=\"companyName\" size=\"8\" value=\"" + legalCustomer.getCompanyName() + "\">" +
-                                "                        </div>\n");
+                out.println("<div class=\"tr\" >\n" +
+                        "<form method=\"get\" id=\"myform"+counter+"\">" +
+                                "                <input style=\"display:none\" type=\"text\" \" name=\"oldEconomicCode\" size=\"8\" value=\"" + legalCustomer.getEconomicCode() + "\">" +
+                        "                        <div class=\"idtd\">" + counter + "</div>\n" +
+                        "                        <div class=\"td\">" +
+                        "                        <p id=\"idLabel" + counter + "\">" + legalCustomer.getId() + "</p>" +
+                        "                        <input style=\"display:none\" type=\"text\" id=\"id" + counter + "\" name=\"id\" size=\"8\" value=\"" + legalCustomer.getId() + "\">" +
+                        "                        </div>\n" +
+                        "                        <div class=\"td\">" +
+                        "                        <p id=\"companyNameLabel" + counter + "\">" + legalCustomer.getCompanyName() + "</p>" +
+                        "                        <input style=\"display:none\" type=\"text\" id=\"companyName" + counter + "\" name=\"companyName\" size=\"8\" value=\"" + legalCustomer.getCompanyName() + "\">" +
+                        "                        </div>\n");
                 out.println("                        <div class=\"td\">" +
-                                "                        <p id=\"registerDateLabel"+counter+"\">"+legalCustomer.getRegisterDate().substring(0,10)+"</p>"+
-                                "                        <input style=\"display:none\" type=\"text\" id=\"registerDate"+counter+"\" name=\"registerDate\" size=\"8\" value=\"" + legalCustomer.getRegisterDate().substring(0,10) + "\">"+
-                                "                        </div>\n");
+                        "                        <p id=\"registerDateLabel" + counter + "\">" + legalCustomer.getRegisterDate().substring(0, 10) + "</p>" +
+                        "                        <input style=\"display:none\" type=\"text\" id=\"registerDate" + counter + "\" name=\"registerDate\" size=\"8\" value=\"" + legalCustomer.getRegisterDate().substring(0, 10) + "\">" +
+                        "                        </div>\n");
                 out.println("                        <div class=\"td\">" +
-                        "                        <p id=\"economicCodeLabel"+counter+"\">"+legalCustomer.getEconomicCode()+"</p>"+
-                        "                        <input style=\"display:none\" type=\"text\" id=\"economicCode"+counter+"\" name=\"economicCode\" size=\"8\" value=\"" + legalCustomer.getEconomicCode() + "\">"+
+                        "                        <p id=\"economicCodeLabel" + counter + "\">" + legalCustomer.getEconomicCode() + "</p>" +
+                        "                        <input style=\"display:none\" type=\"text\" id=\"economicCode" + counter + "\" name=\"economicCode\" size=\"8\" value=\"" + legalCustomer.getEconomicCode() + "\">" +
                         "                        </div>\n");
                 out.println(
-                        "                        <div class=\"td\" id=\"choose"+counter+"\">\n" +
-                        "                            <a href=\"#\" onclick=\"visible("+counter+")\"><img src=\"images/user_male_edit.png\" style=\"margin-left: 5px\"></a>\n" +
-                        "                            <a  onclick=\"doDelete()\"><img src=\"images/user_male_delete.png\"></a>\n" +
-                        "                        </div>\n" +
-                        "                        <div class=\"td\" style=\"display:none\" id=\"send"+counter+"\">" +
-                        "                           <div class=\"buttonDiv\">\n" +
-                        "                        <input class=\"tinButton\" type=\"submit\" value=\"ثبت\" onclick=\"doUpdate()\">\n" +
-                        "                   </div>"+
-                        "                        </div>"+
-                        "</form>" +
-                        "                    </div>");
+                        "                        <div class=\"td\" id=\"choose" + counter + "\">\n" +
+                                "                            <a href=\"#\" onclick=\"visible(" + counter + ")\"><img src=\"images/user_male_edit.png\" style=\"margin-left: 5px\"></a>\n" +
+                                "                            <a  onclick=\"doDelete("+counter+")\"><img src=\"images/user_male_delete.png\"></a>\n" +
+                                "                        </div>\n" +
+                                "                        <div class=\"td\" style=\"display:none\" id=\"send" + counter + "\">" +
+                                "                           <div class=\"buttonDiv\">\n" +
+                                "                        <input class=\"tinButton\" type=\"submit\" value=\"ثبت\" onclick=\"doUpdate("+counter+")\">\n" +
+                                "                   </div>" +
+                                "                        </div>" +
+                                "</form>" +
+                                "                    </div>");
             }
             out.println("</div>");
         }
