@@ -51,9 +51,9 @@ public class RealCustomerUpdateServlet extends HttpServlet {
                 "<div class=\"sidebar\">");
         RealCustomer realCustomer = new RealCustomer(request.getParameter("id"), request.getParameter("firstName"), request.getParameter("lastName"),
                 request.getParameter("fatherName"), request.getParameter("birthDate"), request.getParameter("nationalCode"));
-        if (RealCustomerLogic.updateCustomer(realCustomer,request.getParameter("oldNationalCode"))!=-1) {
+        if (RealCustomerLogic.updateCustomer(realCustomer, request.getParameter("oldNationalCode")) != -1) {
             out.println("اطلاعات مشتری با موفقیت تغییر یافت");
-        }else {
+        } else {
             out.println("<p class=\"textCenter\">کد ملی تکراری است</p>");
             out.println("<p class=\"textCenter\">لطفا مجددا تلاش کنید</p>");
         }

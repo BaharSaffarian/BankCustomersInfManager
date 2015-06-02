@@ -1,7 +1,7 @@
 package presentation;
 
+import logic.RealCustomerLogic;
 import model.RealCustomer;
-import model.RealCustomerCRUD;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -55,7 +55,7 @@ public class RealCustomerSearchServlet extends HttpServlet {
             realCustomer.setLastName(request.getParameter("LastName"));
         if (request.getParameter("NationalCode").length() != 0)
             realCustomer.setNationalCode(request.getParameter("NationalCode"));
-        ArrayList<RealCustomer> realCustomers = RealCustomerCRUD.selectRealCustomer(realCustomer);
+        ArrayList<RealCustomer> realCustomers = RealCustomerLogic.searchRealCustomer(realCustomer);
         if (realCustomers.isEmpty()) {
             out.println("<div class=\"sidebar\">");
             out.println("<p class=\"textCenter\">موردی یافت نشد</p>");
@@ -110,7 +110,7 @@ public class RealCustomerSearchServlet extends HttpServlet {
                 counter++;
                 realCustomer = realCustomer1;
                 out.println("<div class=\"tr\" >\n" +
-                        "<form method=\"get\" id=\"myform"+counter+"\">" +
+                        "<form method=\"get\" id=\"myform" + counter + "\">" +
                         "                <input style=\"display:none\" type=\"text\" \" name=\"oldNationalCode\" size=\"8\" value=\"" + realCustomer.getNationalCode() + "\">" +
                         "                        <div class=\"idtd\">" + counter + "</div>\n" +
                         "                        <div class=\"td\">" +
@@ -139,11 +139,11 @@ public class RealCustomerSearchServlet extends HttpServlet {
                         "                        </div>\n" +
                         "                        <div class=\"td\" id=\"choose" + counter + "\">\n" +
                         "                            <a href=\"#\" onclick=\"visible(" + counter + ")\"><img src=\"images/user_male_edit.png\" style=\"margin-left: 5px\"></a>\n" +
-                        "                            <a  onclick=\"doDelete("+counter+")\"><img src=\"images/user_male_delete.png\"></a>\n" +
+                        "                            <a  onclick=\"doDelete(" + counter + ")\"><img src=\"images/user_male_delete.png\"></a>\n" +
                         "                        </div>\n" +
                         "                        <div class=\"td\" style=\"display:none\" id=\"send" + counter + "\">" +
                         "                           <div class=\"buttonDiv\">\n" +
-                        "                        <input class=\"tinButton\" type=\"submit\" value=\"ثبت\" onclick=\"doUpdate("+counter+")\">\n" +
+                        "                        <input class=\"tinButton\" type=\"submit\" value=\"ثبت\" onclick=\"doUpdate(" + counter + ")\">\n" +
                         "                   </div>" +
                         "                        </div>" +
                         "</form>" +

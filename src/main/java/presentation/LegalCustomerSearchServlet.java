@@ -1,7 +1,7 @@
 package presentation;
 
+import logic.LegalCustomerLogic;
 import model.LegalCustomer;
-import model.LegalCustomerCRUD;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -53,7 +53,7 @@ public class LegalCustomerSearchServlet extends HttpServlet {
             legalCustomer.setCompanyName(request.getParameter("CompanyName"));
         if (request.getParameter("EconomicCode").length() != 0)
             legalCustomer.setEconomicCode(request.getParameter("EconomicCode"));
-        ArrayList<LegalCustomer> legalCustomers = LegalCustomerCRUD.selectLegalCustomer(legalCustomer);
+        ArrayList<LegalCustomer> legalCustomers = LegalCustomerLogic.searchLegalCustomer(legalCustomer);
         if (legalCustomers.isEmpty()) {
             out.println("<div class=\"sidebar\">");
             out.println("<p class=\"textCenter\">موردی یافت نشد</p>");
@@ -102,8 +102,8 @@ public class LegalCustomerSearchServlet extends HttpServlet {
                 counter++;
                 legalCustomer = legalCustomer1;
                 out.println("<div class=\"tr\" >\n" +
-                        "<form method=\"get\" id=\"myform"+counter+"\">" +
-                                "                <input style=\"display:none\" type=\"text\" \" name=\"oldEconomicCode\" size=\"8\" value=\"" + legalCustomer.getEconomicCode() + "\">" +
+                        "<form method=\"get\" id=\"myform" + counter + "\">" +
+                        "                <input style=\"display:none\" type=\"text\" \" name=\"oldEconomicCode\" size=\"8\" value=\"" + legalCustomer.getEconomicCode() + "\">" +
                         "                        <div class=\"idtd\">" + counter + "</div>\n" +
                         "                        <div class=\"td\">" +
                         "                        <p id=\"idLabel" + counter + "\">" + legalCustomer.getId() + "</p>" +
@@ -124,11 +124,11 @@ public class LegalCustomerSearchServlet extends HttpServlet {
                 out.println(
                         "                        <div class=\"td\" id=\"choose" + counter + "\">\n" +
                                 "                            <a href=\"#\" onclick=\"visible(" + counter + ")\"><img src=\"images/user_male_edit.png\" style=\"margin-left: 5px\"></a>\n" +
-                                "                            <a  onclick=\"doDelete("+counter+")\"><img src=\"images/user_male_delete.png\"></a>\n" +
+                                "                            <a  onclick=\"doDelete(" + counter + ")\"><img src=\"images/user_male_delete.png\"></a>\n" +
                                 "                        </div>\n" +
                                 "                        <div class=\"td\" style=\"display:none\" id=\"send" + counter + "\">" +
                                 "                           <div class=\"buttonDiv\">\n" +
-                                "                        <input class=\"tinButton\" type=\"submit\" value=\"ثبت\" onclick=\"doUpdate("+counter+")\">\n" +
+                                "                        <input class=\"tinButton\" type=\"submit\" value=\"ثبت\" onclick=\"doUpdate(" + counter + ")\">\n" +
                                 "                   </div>" +
                                 "                        </div>" +
                                 "</form>" +

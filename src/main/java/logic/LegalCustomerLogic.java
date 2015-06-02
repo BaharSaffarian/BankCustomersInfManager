@@ -3,12 +3,18 @@ package logic;
 import model.LegalCustomer;
 import model.LegalCustomerCRUD;
 
+import java.util.ArrayList;
+
 public class LegalCustomerLogic {
     public static int registerCustomer(LegalCustomer legalCustomer){
         if(!LegalCustomerCRUD.doesEconomicCodeExists(legalCustomer.getEconomicCode())){
             return LegalCustomerCRUD.insertLegalCustomer(legalCustomer);
         }
         return -1;
+    }
+
+    public static ArrayList<LegalCustomer> searchLegalCustomer(LegalCustomer legalCustomer) {
+        return LegalCustomerCRUD.selectLegalCustomer(legalCustomer);
     }
 
     public static int updateCustomer(LegalCustomer legalCustomer, String oldEconomicCod){
